@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .authorizeRequests()
                     .antMatchers(HttpMethod.GET, "/api/test").permitAll()
+                    .antMatchers(HttpMethod.GET, "/api/test/authorized").hasRole("ADMIN")
                     .antMatchers("/api/public/**").permitAll()
                     .anyRequest().authenticated()
                 .and()

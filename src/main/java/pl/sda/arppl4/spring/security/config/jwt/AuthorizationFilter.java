@@ -59,7 +59,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
                 null,
                 Arrays.asList(roles.split(SecurityConstants.ROLES_SEPARATOR))
                         .stream()
-                        .map(SimpleGrantedAuthority::new)
+                        .map((name) -> new SimpleGrantedAuthority("ROLE_" +name))
                         .collect(Collectors.toSet())
         );
 
