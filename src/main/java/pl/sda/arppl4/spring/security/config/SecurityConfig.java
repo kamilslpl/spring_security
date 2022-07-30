@@ -15,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import pl.sda.arppl4.spring.security.config.jwt.AuthenticationFilter;
+import pl.sda.arppl4.spring.security.config.jwt.AuthorizationFilter;
 import pl.sda.arppl4.spring.security.service.ApplicationUserService;
 
 @Slf4j
@@ -30,11 +32,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/test").permitAll()
-                .antMatchers("/api/public/**").permitAll()
-                .anyRequest().authenticated()
+                    .antMatchers(HttpMethod.GET, "/api/test").permitAll()
+                    .antMatchers("/api/public/**").permitAll()
+                    .anyRequest().authenticated()
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .addFilter(new AuthenticationFilter(authenticationManager()))
+                .addFilter(new AuthorizationFilter(authenticationManager()))
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .httpBasic();
     }

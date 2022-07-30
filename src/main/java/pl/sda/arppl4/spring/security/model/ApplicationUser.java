@@ -29,7 +29,7 @@ public class ApplicationUser implements UserDetails {
 
 
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(fetch = FetchType.EAGER)
     @EqualsAndHashCode.Exclude
     private Set<ApplicationUserRole> roles;
 

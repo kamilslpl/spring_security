@@ -18,7 +18,7 @@ public class ApplicationUserRole implements GrantedAuthority {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "roles")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<ApplicationUser> users;
