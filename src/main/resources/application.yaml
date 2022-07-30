@@ -1,0 +1,65 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/arppl4_spring_security?serverTimezone=Europe/Warsaw&createDatabaseIfNotExist=true
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+default:
+  roles:
+    - ADMIN
+    - USER
+    - MODERATOR
+  users:
+    - username: admin
+      password: admin
+      roles: ADMIN, USER, MODERATOR
+    - username: user
+      password: user
+      roles: USER
+
+
+  # Kontekst aplikacji (Context) ustawiamy parametrem poni?ej
+  #server:
+  #  servlet:
+  #    context-path: /app1/
+  #
+  # Przyk?ad: http://localhost:8080/app1/api/student/details?id=5
+
+  #
+  # @Slf4j                        = logi, wypisywanie do konsoli zdarze?
+  # @RequestMapping (nad klas?)   = s?u?y do definiowania ?cie?ki kt�ra b?dzie prefix'em adresu wszystkich endpoint�w wewn?trz.
+  # @RequestBody                  = u?ywamy tej adnotacji do oznaczania obiektu kt�ry b?dzie parametrem zapytania (requestu)
+  #                                 przes?anym w body.
+  # @PathVariable                 = u?ywamy adnotacji do oznaczania zmiennej kt�ra b?dzie wpisana w ?cie?k? adresu.
+  #    Przyk?ad: /api/student/{id}/details
+  #
+  # @RequestParam                 = u?ywamy adnotacji do oznaczania zmiennej kt�ra b?dzie przekazana jako parametr w ?cie?ce.
+  #                                 Parametry przekazujemy po zako?czeniu adresu, po znaku zapytania ('/api/path?param=X')
+  #    Przyk?ad: /api/student/details?id=5
+  #
+  # http://HOST:PORT/CONTEXT/PATH?PARAMS=
+  #
+  # @RestController     = Adnotacja stosowana nad klas? kt�rej chcemy aby zosta? stworzony @Bean. Umo?liwia interakcj?
+  #                       z aplikacj? z zewn?trz poprzez adresowanie endpoint�w (mapping�w). Mappingi konsumuj? (consumes)
+  #                       i produkuj? dane serializowane do postaci JSON.
+  #
+  # @Serice             = Adnotacja stosowana nad klas? kt�rej chcemy aby zosta? stworzony @Bean. Jest wskazaniem dla nas
+  #                       miejsca implementacji logiki biznesowej.
+
+  # @Component          = Adnotacja stosowana nad klas? kt�rej chcemy aby zosta? stworzony @Bean. .
+  #                       Jest Adnotacj? (typem) po kt�rym dziedzicz? pozosta?e adnotacje komponentowe:
+  #                         (Service, Controller, RestController, Repository, Confiuguration)
+  #
+  # @Repository         = Adnotacja stosowana nad klas? kt�rej chcemy aby zosta? stworzony @Bean. .
+  #                       Data Access Object - reprezentuje obiekt kt�rego u?ywamy w warstwach logiki biznesowej.
+  #                       Jest wskazaniem dla nas miejsca w kt�rych znajduj? si? metody do manipulacji/pobierania/zarz?dzania
+  #                       obiektami w bazie danych.
+  #
+  #
+  # @Configuration      = Adnotacja stosowana nad klas? kt�rej chcemy aby zosta? stworzony @Bean. . Jest to klasa kt�ra
+  #                       zawiera konfiguracje w postaci obiekt�w (@Bean). Jest inicjalizowana jednorazowo.
+  #
+  # TODO: @Controller
