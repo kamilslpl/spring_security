@@ -25,7 +25,7 @@ public class ApplicationUserService implements UserDetailsService {
 
             return applicationUserOptional.get();
         }
-        log.warn("Usern not found !!! " + username);
+        log.warn("User not found !!! " + username);
         throw new UsernameNotFoundException("Cant find user with username " + username);
 
     }
